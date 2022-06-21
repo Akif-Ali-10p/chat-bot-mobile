@@ -3,6 +3,8 @@ import axios from "axios";
 
 const baseUrl = 'https://jsonplaceholder.typicode.com';
 
+// const baseUrl =  "https://3688-117-20-31-76.in.ngrok.io/todo";
+
 export async function getPosts() {
     console.log("working");
     var url = baseUrl + "/users/1";
