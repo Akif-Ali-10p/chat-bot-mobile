@@ -6,8 +6,7 @@
  * @flow strict-local
  */
 
- import React from 'react';
- import {Node} from 'react';
+ import React, { useState } from 'react';
  
  import {
    SafeAreaView,
@@ -18,10 +17,12 @@
    TextInput,
    useColorScheme,
    View,
-   FlatList
+   FlatList,
+   KeyboardAvoidingView
  } from 'react-native';
  
  import { Icon } from "@rneui/themed";
+ import axios from 'axios';
 
  import {
    Colors,
@@ -44,7 +45,7 @@ const Banner = () => {
           </View>
 
         <View style = {{flexDirection : 'row'}}>
-          <Icon name = 'phone' size = {27} color = '#fff'/>
+          <Icon name = 'phone' size = {27} color = '#fff' style = {{paddingHorizontal: 10}}/>
           <Icon name = 'options-vertical' type = 'simple-line-icon' size = {25} color = '#fff'/>
         </View>
       </View>
@@ -52,31 +53,84 @@ const Banner = () => {
   );
 };
 
-const Footer = () => {
+
+const MessageSending = () => {
+  const [msgs, setMsgs] = useState(messageList);
+
+  async function Recieve(m){
+    const updatedmsgsArray = [...msgs, {message: m, bot: false}];
+    setMsgs(updatedmsgsArray);
+    const mes = await receiveMessage(m);
+    const updatedmsgsArray2 = [...updatedmsgsArray, {message: mes, bot: true}];
+    setMsgs(updatedmsgsArray2);
+  }
+
+  return(
+    <View style={{flex: 0.8, justifyContent: 'flex-end'}}>
+        <Messages msgList = {msgs} />
+        <Footer messageSent = {(m) => {
+          if(m.length > 0) {
+            Recieve(m);
+          }
+        }}
+        />
+    </View>
+  );
+}
+
+
+
+const receiveMessage = (msg) =>{
+  return axios
+    .post('https://4cdb-117-20-31-76.in.ngrok.io/conversation', {
+      user_input: msg,
+    })
+    .then(function (response) {
+      // handle success
+      return response.data.data;
+    })
+    .catch(function (error) {
+      // handle error
+      return 'Unable to connect at the moment';
+    });
+};
+
+
+const Footer = ({ messageSent }) => {
+  const [text, setText] = useState('');
   return (
     <View style={styles.footer}>
       <View style = {{flexDirection : 'row', marginTop: 12, paddingHorizontal: 15}}>
+        
         <TextInput style={styles.input}
-        defaultValue="Write something here"/>
+        placeholder ="Type message here"
+        value = {text}
+        onChangeText = {msg => setText(msg)}
+        onSubmitEditing = {() => {messageSent(text); setText('')}}
+        />
+        
         <Icon name='sc-telegram'
         type ='evilicon'
         size = {40}
+        onPress = {() => {messageSent(text); setText('')}}
         color = '#fff' style={styles.send} />
       </View>
     </View>
   );
 };
 
-const Messages = () => {
+let messageList = [
+  {message: 'Hey!', bot: true},
+];
+
+const Messages = (props) => {
   return (
-    <View style={{flex: 1, flexDirection: 'column-reverse', paddingHorizontal: 20}}>
-    <FlatList
-      data={[
-        {key: 'Jillian'},
-        {key: 'Jimmy'},
-        {key: 'Julie'},
-      ]}
-      renderItem={({item}) => <Message msg = {item.key}/>}
+    <View style={{paddingHorizontal: 20}}>
+    <FlatList 
+      inverted
+
+      data = {[...props.msgList].reverse()}
+      renderItem={({item}) => <Message msg = {item}/>}
     />
   </View>
   );
@@ -84,13 +138,25 @@ const Messages = () => {
 
 const Message = (props) => {
   return(
-    <View style={styles.message}>
-      <Text style={styles.messagetext}>{props.msg}</Text>
+    <View style={messageStyle(props.msg.bot).message}>
+      <Text style={styles.messagetext}>{props.msg.message}</Text>
     </View>
   );
 };
 
- const App = () => {
+const messageStyle = (bool) => {
+    return StyleSheet.create({
+      message:{
+        backgroundColor: !bool ? '#E9C249A0' : '#F25C05A0',
+        alignSelf:  !bool ? "flex-end" : "flex-start",
+        width: "auto",
+        borderRadius: 10,
+        marginTop: 10,
+      }
+    });
+};
+
+const App = () => {
    const isDarkMode = useColorScheme() === 'dark';
  
    const backgroundStyle = {
@@ -98,11 +164,10 @@ const Message = (props) => {
    };
  
    return (
-     <View style = {styles.mainscreen}>
-         <Banner/>
-         <Messages/>
-         <Footer/>
-     </View>
+     <KeyboardAvoidingView style = {styles.mainscreen}>
+          <Banner/>
+            <MessageSending/>
+     </KeyboardAvoidingView>
    );
  };
  
@@ -121,17 +186,19 @@ const Message = (props) => {
     height: 80,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
+    marginBottom: 20,
+    zindex: -1
    },
    appbar: {
     flexDirection : 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 24,
+    marginTop: 18,
     marginRight: 20
   },
    footer:{
     backgroundColor: '#145E8C',
-    height: 75,
+    height: 70,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     marginTop: 24,
@@ -140,10 +207,11 @@ const Message = (props) => {
     color: Colors.white,
     fontWeight: '700',
     paddingHorizontal: 20,
+    paddingVertical: 10,
     fontSize: 26,
   },
   input: {
-    width: 320,
+    width: '85%',
     height: 50,
     backgroundColor: '#fff',
     paddingVertical: 10,
@@ -156,7 +224,11 @@ const Message = (props) => {
     marginTop: 10
   },
   robot:{
-    marginLeft: 20
+    marginLeft: 20,
+    padding: 11,
+    borderRadius: 50,
+    backgroundColor: '#F25C05',
+    justifyContent: 'center'
   },
   messagetext:{
     fontSize: 17,
@@ -164,12 +236,6 @@ const Message = (props) => {
     paddingHorizontal: 10,
     paddingVertical: 10
   },
-  message:{
-    backgroundColor: '#A0E9C249',
-    height: 50,
-    borderRadius: 10,
-    marginTop: 10,
-  }
  });
  
  export default App;
