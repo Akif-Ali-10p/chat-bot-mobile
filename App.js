@@ -53,15 +53,17 @@ const Banner = () => {
   );
 };
 
+let conv_id = -1;
 
 const MessageSending = () => {
   const [msgs, setMsgs] = useState(messageList);
 
   async function Recieve(m){
-    const updatedmsgsArray = [...msgs, {message: m, bot: false}];
+    const updatedmsgsArray = [...msgs, {message: m, bot: false, conv: conv_id}];
     setMsgs(updatedmsgsArray);
-    const mes = await receiveMessage(m);
-    const updatedmsgsArray2 = [...updatedmsgsArray, {message: mes, bot: true}];
+    const mes = await receiveMessage(m, conv_id);
+    conv_id = mes.id;
+    const updatedmsgsArray2 = [...updatedmsgsArray, {message: mes.reply, bot: true, conv: mes.id}];
     setMsgs(updatedmsgsArray2);
   }
 
@@ -80,14 +82,15 @@ const MessageSending = () => {
 
 
 
-const receiveMessage = (msg) =>{
+const receiveMessage = (msg, id) =>{
   return axios
     .post('https://4cdb-117-20-31-76.in.ngrok.io/conversation', {
-      user_input: msg,
+        "text": msg,
+        "id": id
     })
     .then(function (response) {
       // handle success
-      return response.data.data;
+      return response.data;
     })
     .catch(function (error) {
       // handle error
@@ -120,15 +123,14 @@ const Footer = ({ messageSent }) => {
 };
 
 let messageList = [
-  {message: 'Hey!', bot: true},
+  {message: 'Hey!', bot: true, conv: conv_id},
 ];
 
 const Messages = (props) => {
   return (
-    <View style={{paddingHorizontal: 20}}>
+    <View style={{paddingHorizontal: 22}}>
     <FlatList 
       inverted
-
       data = {[...props.msgList].reverse()}
       renderItem={({item}) => <Message msg = {item}/>}
     />
@@ -152,6 +154,10 @@ const messageStyle = (bool) => {
         width: "auto",
         borderRadius: 10,
         marginTop: 10,
+        marginBottom: 5,
+        marginRight: bool ? 40 : 0,
+        marginLeft: !bool ? 40 : 0,
+        paddingHorizontal: 10
       }
     });
 };
