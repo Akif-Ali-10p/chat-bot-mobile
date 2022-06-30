@@ -99,19 +99,21 @@ const Footer = (props) => {
   // Send the msg to server and get reply
   async function sendMsg(){
     if(text.length>0){
+      // get id from previous message
+      const id = props.messages[props.messages.length - 1].conv ?? -1;
       // send user text
-      const msg_thread = [...props.messages,{text:text, server:false}];
+      const msg_thread = [...props.messages,{text:text, server:false, conv: id}];
       props.setMsg(msg_thread);
       setText("");
-      // get reply
-      let reply;
-      postData({text}).then((data)=>{
-        reply = data;
+      // get reply=
+      postData({text, id}).then((data)=>{
+        // Send this message
+        console.log("Package from client:");
+        console.log({text, id});
         // return servers response
-        console.log(reply + "=> typeof: "+ typeof reply);
-        // console.log(reply.data);
-        // console.log(typeof reply);
-        props.setMsg([...msg_thread, {text:reply, server:true}]);
+        console.log("Package from server:");
+        console.log(data);
+        props.setMsg([...msg_thread, {text: data.reply, server:true, conv: data.id}]);
       });
     }
   }
