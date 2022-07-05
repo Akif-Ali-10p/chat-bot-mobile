@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
- import React, { useState } from 'react';
+ import React, { useState, useEffect} from 'react';
  
  import {
    SafeAreaView,
@@ -23,6 +23,8 @@
  
  import { Icon } from "@rneui/themed";
  import axios from 'axios';
+ import io from "socket.io-client";
+ import socket from "./socket.js";
 
  import {
    Colors,
@@ -30,6 +32,8 @@
    LearnMoreLinks,
    ReloadInstructions,
  } from 'react-native/Libraries/NewAppScreen';
+
+ window.navigator.userAgent = 'react-native';
  
 
 const Banner = () => {
@@ -56,23 +60,41 @@ const Banner = () => {
 let conv_id = -1;
 
 const MessageSending = () => {
-  const [msgs, setMsgs] = useState(messageList);
+  const [msgs, setMsgs] = useState([]);
+  
 
-  async function Recieve(m){
-    const updatedmsgsArray = [...msgs, {message: m, bot: false, conv: conv_id}];
-    setMsgs(updatedmsgsArray);
-    const mes = await receiveMessage(m, conv_id);
-    conv_id = mes.id;
-    const updatedmsgsArray2 = [...updatedmsgsArray, {message: mes.reply, bot: true, conv: mes.id}];
-    setMsgs(updatedmsgsArray2);
-  }
+  // async function Recieve(m){
+  //   const updatedmsgsArray = [...msgs, {message: m, bot: false, conv: conv_id}];
+  //   setMsgs(updatedmsgsArray);
+  //   const mes = await receiveMessage(m, conv_id);
+  //   conv_id = mes.id;
+  //   const updatedmsgsArray2 = [...updatedmsgsArray, {message: mes.reply, bot: true, conv: mes.id}];
+  //   setMsgs(updatedmsgsArray2);
+  // }
 
+  useEffect(() => {
+     console.log(socket.connected);
+     console.log(socket.id);
+      socket.on(socket.id, (msg) => {
+        console.log('message: ' + msg);
+        setMsgs((prevMessages) => {
+          const newMessages = [...prevMessages, {message: msg , bot: true}];
+          return newMessages;
+        });
+      });
+  });
+
+
+  
   return(
     <View style={{flex: 0.8, justifyContent: 'flex-end'}}>
         <Messages msgList = {msgs} />
         <Footer messageSent = {(m) => {
           if(m.length > 0) {
-            Recieve(m);
+            const updatedmsgsArray = [...msgs, {message: m, bot: false}];
+            setMsgs(updatedmsgsArray);
+            // const socket = io('localhost:2800', {transports: ['websocket'], jsonp:false, forceNew: true,});
+            socket.emit(socket.id, m);
           }
         }}
         />
@@ -122,9 +144,9 @@ const Footer = ({ messageSent }) => {
   );
 };
 
-let messageList = [
-  {message: 'Hey!', bot: true, conv: conv_id},
-];
+// let messageList = [
+//   {message: 'Hey!', bot: true, conv: conv_id},
+// ];
 
 const Messages = (props) => {
   return (
@@ -172,7 +194,7 @@ const App = () => {
    return (
      <KeyboardAvoidingView style = {styles.mainscreen}>
           <Banner/>
-            <MessageSending/>
+          <MessageSending/>
      </KeyboardAvoidingView>
    );
  };
