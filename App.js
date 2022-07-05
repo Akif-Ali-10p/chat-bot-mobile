@@ -1,13 +1,12 @@
 import React, {Component, useState} from 'react';  
 import {Text, View, ScrollView, FlatList, StyleSheet, Button, TextInput, KeyboardAvoidingView} from 'react-native';
-import InvertibleScrollView from 'react-native-invertible-scroll-view';
 // import material ui icons
 import { Icon } from "@rneui/themed";
 // import Api
 import {getPosts, postData} from './src/api/msg_api.js';
-
-Props = {};
-
+// import socket-io
+import socket from './src/socket.js';
+import { useEffect } from 'react';
   
 function chatFunction () {
   // call api to get posts
@@ -18,7 +17,6 @@ function chatFunction () {
     console.log(err);
   })
 }
-
 // Class Component Example.
 class MyClassComponent extends Component{
   render(){
@@ -76,6 +74,8 @@ const Message = (props) =>{
 
 // Body component
 const Body = (prop) => {
+  
+
   return(
     // <>
       <FlatList  
@@ -100,21 +100,25 @@ const Footer = (props) => {
   async function sendMsg(){
     if(text.length>0){
       // get id from previous message
-      const id = props.messages[props.messages.length - 1].conv ?? -1;
+      // const id = props.messages[props.messages.length - 1].conv ?? -1;
       // send user text
       const msg_thread = [...props.messages,{text:text, server:false, conv: id}];
+      socket.emit(socket.id, text);
+      console.log("Sending msg from: "+socket.id+", msg: " + text);
       props.setMsg(msg_thread);
       setText("");
-      // get reply=
-      postData({text, id}).then((data)=>{
-        // Send this message
-        console.log("Package from client:");
-        console.log({text, id});
-        // return servers response
-        console.log("Package from server:");
-        console.log(data);
-        props.setMsg([...msg_thread, {text: data.reply, server:true, conv: data.id}]);
-      });
+      // get reply from server API for chatbot
+      // postData({text, id}).then((data)=>{
+      //   // Send this message
+      //   console.log("Package from client:");
+      //   console.log({text, id});
+      //   // return servers response
+      //   console.log("Package from server:");
+      //   console.log(data);
+      //   props.setMsg([...msg_thread, {text: data.reply, server:true, conv: data.id}]);
+      // });
+       // socket io send msg
+       // send msg on '' channel
     }
   }
   return (
@@ -141,7 +145,11 @@ const MyApp = () =>{
     {text:"Anytime :)", server: true},
     {text:"Why would you not reply", server: false},
     {text:"Auto-scroll works", server: true}
-    ]);
+  ]);
+  socket.on(socket.id, (msg) => {
+    console.log("Received msg from: "+socket.id+", msg: " + msg);
+    setMsgs([...msgs, {text: msg, server: true, conv:-1}]);
+  });
   return(
     <>
       <Body messages={msgs}/>
