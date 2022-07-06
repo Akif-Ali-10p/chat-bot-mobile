@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">chatBotMobile</string>
+    <string name="facebook_app_id">1182869782259825</string>
+    <string name="facebook_client_token">3cea2dd9c78bdc735e861e51b9d06462</string>
 </resources>
