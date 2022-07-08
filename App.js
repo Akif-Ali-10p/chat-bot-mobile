@@ -37,6 +37,7 @@ const AppUI = () =>{
   if (!user) {
     return (
       <View>
+        {/* <SignIn /> */}
         <Signup />
       </View>
     );
@@ -49,14 +50,10 @@ const AppUI = () =>{
   );
 }
 export default class App extends Component {  
-  render() {  
+  render() { 
+    console.log("Refreshed UI."); 
     return (  
-      <View>
-        <SignIn />
-      </View>
-      // <AppUI />
-      // <Signup />
-      // <View><Text>Hey</Text></View>
+      <AppUI />
     );  
   }
 }
