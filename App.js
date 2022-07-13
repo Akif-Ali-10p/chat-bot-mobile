@@ -11,6 +11,7 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 // import signup
 import Signup from './src/components/pages/signup.js';
 import SignIn from './src/components/pages/signin.js';
+import Onboard from './src/components/pages/onboarding.js';
 
 
 GoogleSignin.configure({
@@ -38,7 +39,8 @@ const AppUI = () =>{
     return (
       <View>
         {/* <SignIn /> */}
-        <Signup />
+        {/* <Signup /> */}
+        <Onboard />
       </View>
     );
   }
@@ -59,64 +61,11 @@ export default class App extends Component {
 }
 
 const style = StyleSheet.create({
-  screen:{
-    flex:1,
-    justifyContent:'space-between',
-    alignItems:'center',
-    backgroundColor:'light-grey',
-    padding:20
-  },
-  inputContainer:{
-    flex:0.3,
-    // justifyContent:'space-evenly',
-    alignItems:'center',
-    backgroundColor:'#f5f5f5',
-    padding:20
-
-  },
-  fields:{
-    flex:0.3,
-    justifyContent:'center',
-    alignItems:'center',
-  },
-  logo: {  
-    fontSize: 48,  
-    textAlign: 'center',  
-    margin: 10, 
-    color: 'red',
-    fontWeight: 'bold',
-  },
   header:{
     fontSize: 32,
     fontWeight: 'bold',
     textAlign: 'center',
     margin: 10,
     color: 'blue',
-  },
-  input:{
-    borderWidth: 1,
-    borderColor: 'black',
-    width: '60%',
-    height: 38,
-    margin: 10,
-    padding: 10,
-    borderRadius: 10,
-    backgroundColor: 'white',
-  },
-  button:{
-    height: '8%',
-    width: '40%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 20,
-    backgroundColor: 'red',
-    borderWidth: 2,
-    borderColor: 'grey'
-  },
-  socials:{
-    justifyContent:'center',
-    alignItems:'center',
-    flexDirection:'column',
-    padding:20
-  },
+  }
 });

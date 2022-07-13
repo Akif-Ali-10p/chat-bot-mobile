@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { View, Text, TextInput } from 'react-native';
 
-import { InputField, MidText, BackIcon, BigRoundButton } from '../atoms/atoms';
+import { InputField, MidText, BackIcon, BigRoundButton, BigRoundSocialButton } from '../atoms/atoms';
 import { Header } from '../molecules/molecules';
 
 // Auth manager
@@ -62,14 +62,14 @@ const SignIn = () => {
         return auth().signInWithCredential(facebookCredential);
     }
     return (
-        <View>
+        <View style={{height:'100%'}}>
             <Header text={"Sign In"} onPressed={backButtonPressed} />
             <InputField placeHolder={"E-mail or phone number"} setText={setEmail} text={email} />
             <InputField placeHolder={"Password"} setText={setPassword} text={password} secured={true} />
             <BigRoundButton text={"Log In"} onPressed={signupWithEmail} />
             <MidText text={"OR"} />
-            <BigRoundButton text={"Facebook Login"} style={{ backgroundColor: '#385898', borderColor: 'black' }} onPressed={signupWithFacebook} />
-            <BigRoundButton text={"Google Login"} textStyle={{ color: 'black' }} style={{ backgroundColor: 'white' }} onPressed={signupWithGoogle} />
+            <BigRoundSocialButton social="Facebook" onPressed={signupWithFacebook} />
+            <BigRoundSocialButton social="Google" onPressed={signupWithGoogle} />
         </View>
     );
 }

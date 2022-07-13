@@ -27,7 +27,7 @@ const Signup = () => {
       });
     }
     return(
-        <View>
+        <View style={{height:'100%'}}>
             <Header text={"Create new account"} onPressed={backButtonPressed} />
             <InputField placeHolder={"Full Name"} setText={setName} text={name} />
             <InputField placeHolder={"Phone Number"} setText={setPhone} text={phone} keyboardType='number-pad'/>

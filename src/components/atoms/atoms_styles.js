@@ -41,6 +41,14 @@ const style = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: 'white'
+    },
+    onboarding_text:{
+        fontSize: 35,
+        fontWeight: 'bold',
+        fontFamily: 'sans-serif-condensed',
+        color: 'white',
+        textAlign: 'center',
+        padding: 20
     }
 });
 
