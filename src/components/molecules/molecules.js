@@ -1,6 +1,7 @@
 import React from 'react';  
-import {View} from 'react-native';  
-import { BackIcon, HalfLine, HeaderText, MidText } from '../atoms/atoms';
+import {ImageBackground, TouchableHighlight, View} from 'react-native';  
+import { BackIcon, HalfLine, HeaderText, MidText, TabText } from '../atoms/atoms';
+import style from './molecule_styles';
 
 const Divider = () => {
     return(
@@ -21,4 +22,14 @@ const Header = (props) => {
     );
 }
 
-export {Divider, Header};
+const TabBar = (props) => {
+    return(
+        <TouchableHighlight style={style.card} onPress={props.onPressed}>
+            <ImageBackground source={props.image} resizeMode="stretch" imageStyle={{width:'100%'}}>
+                <TabText text={props.text}/>
+            </ImageBackground>
+        </TouchableHighlight>
+    );
+}
+
+export {Divider, Header, TabBar};

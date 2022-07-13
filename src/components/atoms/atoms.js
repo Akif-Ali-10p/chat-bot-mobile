@@ -79,7 +79,7 @@ const BigRoundSocialButton = (props) => {
 const OnboardingLogo = (props) => {
     return(
         <View style={{alignItems:'center', padding:10, borderColor:'white', borderWidth:2}}>
-            <Icon name={props.logo} type={props.logo_type} size={50} color='white'/>
+            <Icon name={props.logo} type={props.logoType} size={50} color='white'/>
         </View>
     );
 }
@@ -110,4 +110,12 @@ const NavigatorDots = (props) => {
     );
 }
 
-export {InputField, HalfLine, MidText, HeaderText, BackIcon, BigRoundButton, BigRoundSocialButton, OnboardingLogo, OnboardingText, OnboardingTagline, NavigatorDots};
+const TabText = (props) => {
+    return(
+        <View style={style.tab_text_container}>
+            <Text style={style.tab_text}>{props.text}</Text>
+        </View>
+    );
+}
+
+export {InputField, HalfLine, MidText, HeaderText, BackIcon, BigRoundButton, BigRoundSocialButton, OnboardingLogo, OnboardingText, OnboardingTagline, NavigatorDots, TabText};

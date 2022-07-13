@@ -12,6 +12,7 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 import Signup from './src/components/pages/signup.js';
 import SignIn from './src/components/pages/signin.js';
 import Onboard from './src/components/pages/onboarding.js';
+import HomePage from './src/components/pages/homepage.js';
 
 
 GoogleSignin.configure({
@@ -40,7 +41,8 @@ const AppUI = () =>{
       <View>
         {/* <SignIn /> */}
         {/* <Signup /> */}
-        <Onboard />
+        {/* <Onboard /> */}
+        <HomePage />
       </View>
     );
   }

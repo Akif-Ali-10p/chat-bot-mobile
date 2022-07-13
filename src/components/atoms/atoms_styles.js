@@ -49,6 +49,18 @@ const style = StyleSheet.create({
         color: 'white',
         textAlign: 'center',
         padding: 20
+    },
+    tab_text_container:{
+        width: 150,
+        height: '100%',
+        justifyContent: 'center',
+        backgroundColor: '#000000a0'
+    },
+    tab_text:{
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'white',
+        textAlign: 'center'
     }
 });
 
