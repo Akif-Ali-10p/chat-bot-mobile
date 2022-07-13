@@ -1,7 +1,7 @@
 import React, {useState} from 'react';  
 import { Text, View } from 'react-native';
 import { TabBar } from '../molecules/molecules';
-import CategoryTabs from '../organisms/organisms';
+import { CategoryTabs } from '../organisms/organisms';
 
 const HomePage = () => {
     function ButtonPressed() {

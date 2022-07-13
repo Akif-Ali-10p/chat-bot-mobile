@@ -22,9 +22,9 @@ const Header = (props) => {
     );
 }
 
-const TabBar = (props) => {
+const HorizontalTabBar = (props) => {
     return(
-        <TouchableHighlight style={style.card} onPress={props.onPressed}>
+        <TouchableHighlight style={{...style.card,...props.style}} onPress={props.onPressed}>
             <ImageBackground source={props.image} resizeMode="stretch" imageStyle={{width:'100%'}}>
                 <TabText text={props.text}/>
             </ImageBackground>
@@ -32,4 +32,14 @@ const TabBar = (props) => {
     );
 }
 
-export {Divider, Header, TabBar};
+const VerticalTabBar = (props) => {
+    return(
+        <TouchableHighlight style={style.bar} onPress={props.onPressed}>
+            <ImageBackground source={props.image} resizeMode="stretch" imageStyle={{width:'100%'}}>
+                <TabText text={props.text} text_container={{width:400}}/>
+            </ImageBackground>
+        </TouchableHighlight>
+    );
+}
+
+export {Divider, Header, HorizontalTabBar, VerticalTabBar};

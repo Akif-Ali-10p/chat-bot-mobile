@@ -112,7 +112,7 @@ const NavigatorDots = (props) => {
 
 const TabText = (props) => {
     return(
-        <View style={style.tab_text_container}>
+        <View style={{...style.tab_text_container, ...props.text_container}}>
             <Text style={style.tab_text}>{props.text}</Text>
         </View>
     );

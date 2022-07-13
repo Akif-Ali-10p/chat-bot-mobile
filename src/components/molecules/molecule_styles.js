@@ -9,6 +9,15 @@ const style = StyleSheet.create({
         alignItems: 'flex-start',
         borderRadius: 20,
         overflow: 'hidden'
+    },
+    bar: {
+        width: '95%',
+        height: 100,
+        marginVertical: 10,
+        marginHorizontal: 10,
+        alignItems: 'flex-start',
+        borderRadius: 20,
+        overflow: 'hidden'
     }
 });
 
