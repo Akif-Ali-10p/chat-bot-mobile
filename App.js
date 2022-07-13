@@ -1,5 +1,5 @@
 import React, {Component, useEffect, useState} from 'react';  
-import {Text, View, ScrollView, KeyboardAvoidingView, StyleSheet, TextInput, Button, TouchableHighlight} from 'react-native';  
+import {Text, ImageBackground, View, ScrollView, KeyboardAvoidingView, StyleSheet, TextInput, Button, TouchableHighlight} from 'react-native';  
 // Beuatiful Social Buttons
 import { FacebookSocialButton, MicrosoftSocialButton, GoogleSocialButton } from 'react-native-social-buttons';
 // Auth manager
@@ -12,6 +12,7 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 import Signup from './src/components/pages/signup.js';
 import SignIn from './src/components/pages/signin.js';
 import Onboard from './src/components/pages/onboarding.js';
+
 
 
 GoogleSignin.configure({
@@ -38,9 +39,10 @@ const AppUI = () =>{
   if (!user) {
     return (
       <View>
-        {/* <SignIn /> */}
+        <SignIn />
         {/* <Signup /> */}
-        <Onboard />
+        {/* <Onboard /> */}
+
       </View>
     );
   }

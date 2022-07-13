@@ -1,6 +1,6 @@
 import React from 'react';  
-import {View} from 'react-native';  
-import { BackIcon, HalfLine, HeaderText, MidText } from '../atoms/atoms';
+import {View, FlatList} from 'react-native';  
+import { BackIcon, HalfLine, HeaderText, MidText, ListCard } from '../atoms/atoms';
 
 const Divider = () => {
     return(
@@ -21,4 +21,22 @@ const Header = (props) => {
     );
 }
 
-export {Divider, Header};
+const HorizontalList = (props) => {
+    return(
+        <FlatList
+            // style={styles.flatList}
+            horizontal={true}
+            data={props.list}
+            renderItem={({item}) => 
+                <ListCard
+                image = {item.image}
+                desc = {item.desc}
+                price = {item.price}
+                />
+            }
+            keyExtractor={(item, index) => index.toString()}
+        />
+    );
+}
+
+export {Divider, Header, HorizontalList};
