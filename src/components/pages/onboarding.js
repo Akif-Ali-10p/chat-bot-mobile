@@ -10,7 +10,7 @@ const Onboard = () => {
     }
     return(
         <View style={{backgroundColor:'#333333', height:'100%', width:'100%', justifyContent:'space-evenly', paddingTop:'30%'}}>
-          <OnboardingLogo logo='favorite'/>
+          <OnboardingLogo logo='favorite' logoType='material'/>
           <OnboardingText text='Shopertino'/>
           <OnboardingTagline text='Shopertino is a marketplace for all things fashion.'/>
           <NavigatorDots numDots={5}/>

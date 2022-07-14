@@ -12,8 +12,15 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 import Signup from './src/components/pages/signup.js';
 import SignIn from './src/components/pages/signin.js';
 import Onboard from './src/components/pages/onboarding.js';
+<<<<<<< HEAD
 import Test from './src/components/pages/test.js';
 import MainPage from './src/components/pages/MainPage.js';
+=======
+import HomePage from './src/components/pages/homepage.js';
+import ShopPage from './src/components/pages/categoryPage.js';
+import TestPage from './src/components/pages/test.js';
+
+>>>>>>> Front-End
 
 
 GoogleSignin.configure({
@@ -43,9 +50,15 @@ const AppUI = () =>{
         {/* <SignIn /> */}
         {/* <Signup /> */}
         {/* <Onboard /> */}
+<<<<<<< HEAD
 
         {/* <Test/> */}
         <MainPage/>
+=======
+        {/* <HomePage /> */}
+        {/* <ShopPage /> */}
+        <TestPage />
+>>>>>>> Front-End
       </View>
     );
   }

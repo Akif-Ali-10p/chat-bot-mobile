@@ -74,6 +74,45 @@ const style = StyleSheet.create({
         color: 'white',
         textAlign: 'center',
         padding: 20
+    },
+    tab_text_container:{
+        width: 150,
+        height: '100%',
+        justifyContent: 'center',
+        backgroundColor: '#000000a0'
+    },
+    tab_text:{
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'white',
+        textAlign: 'center'
+    },
+    big_square_button:{
+        height: 50,
+        width: 120,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 5,
+        backgroundColor: '#333333',
+        borderWidth: 1,
+        borderColor: 'grey',
+        elevation: 5
+    },
+    total_amount_text: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#333333',
+        textAlign:'center',
+        padding: 20
+    },
+    small_pic_tile: {
+        width: 80, 
+        height: 120, 
+        resizeMode: 'cover',
+        margin: 10,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#dddddd'
     }
 });
 
