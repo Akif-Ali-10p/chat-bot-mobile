@@ -79,7 +79,7 @@ const BigRoundSocialButton = (props) => {
 const OnboardingLogo = (props) => {
     return(
         <View style={{alignItems:'center', padding:10, borderColor:'white', borderWidth:2}}>
-            <Icon name={props.logo} type={props.logo_type} size={50} color='white'/>
+            <Icon name={props.logo} type={props.logoType} size={50} color='white'/>
         </View>
     );
 }
@@ -110,6 +110,24 @@ const NavigatorDots = (props) => {
     );
 }
 
+const TabText = (props) => {
+    return(
+        <View style={{...style.tab_text_container, ...props.text_container}}>
+            <Text style={style.tab_text}>{props.text}</Text>
+        </View>
+    );
+}
+
+const SquareButton = (props) => {
+    return(
+        <View style={{alignItems:'center', paddingVertical:20}}>
+            <TouchableHighlight style={style.big_square_button} onPress={props.onPressed} >
+                <Text style={{...style.big_round_button_text, fontSize:15}}>{props.text}</Text>
+            </TouchableHighlight>
+        </View>
+    );
+}
+
 const ListCard = (props) => {
     return(
         //props.item: image, desc, price
@@ -127,9 +145,35 @@ const ListCard = (props) => {
     );
 }
 
+const TotalAmountText = (props) => {
+    return(
+        <View style={{alignItems:'flex-start', padding:10}}>
+            <Text style={style.total_amount_text}>{"Total: "+props.text}</Text>
+        </View>
+    );
+}
+
+const SmallPictureTile = (props) => {
+    return(
+        <Image 
+            source={{uri: props.image}}
+            style={style.small_pic_tile}
+        />
+    );
+}
+
+const OrderDate = (props) => {
+    return(
+        <View style={{alignItems:'flex-end', padding:10}}>
+            <Text style={{}}>{props.text}</Text>
+        </View>
+    );
+}
+
 export {InputField, HalfLine, MidText,
      HeaderText, BackIcon, BigRoundButton,
      BigRoundSocialButton, OnboardingLogo,
      OnboardingText, OnboardingTagline, NavigatorDots,
-     ListCard
+     ListCard, TabText,
+     SquareButton, TotalAmountText, SmallPictureTile, OrderDate
     };
