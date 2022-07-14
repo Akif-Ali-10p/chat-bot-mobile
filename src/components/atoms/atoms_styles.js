@@ -27,6 +27,31 @@ const style = StyleSheet.create({
         paddingVertical:20, 
         paddingLeft: 20
     },
+    logo:{
+        marginTop: 20,
+        marginBottom: 10, 
+        fontSize: 150, 
+        fontFamily: 'serif',
+         color: 'black'
+    },
+    h1: {
+        fontWeight: '900',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        fontSize: 30,
+        fontFamily: 'sans-serif-condensed',
+        color: '#333333'
+      },
+    h2: {
+        fontWeight: '700',
+        paddingHorizontal: 30,
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 20,
+        marginBottom: 30,
+        fontSize: 18,
+        textAlign: 'center'
+      },
     big_round_button:{
         height: 55,
         width: '60%',
@@ -34,7 +59,7 @@ const style = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 30,
         backgroundColor: '#333333',
-        borderWidth: 1,
+        borderWidth: 1.5,
         borderColor: 'grey'
     },
     big_round_button_text:{

@@ -1,6 +1,6 @@
 import React from 'react';  
-import {View, FlatList} from 'react-native';  
-import { BackIcon, HalfLine, HeaderText, MidText, ListCard } from '../atoms/atoms';
+import {View, FlatList, Text} from 'react-native';  
+import { BackIcon, HalfLine, HeaderText, MidText, ListCard, H1, H2, Slogo } from '../atoms/atoms';
 
 const Divider = () => {
     return(
@@ -39,4 +39,36 @@ const HorizontalList = (props) => {
     );
 }
 
-export {Divider, Header, HorizontalList};
+const VerticalList = (props) => {
+    return(
+        <FlatList
+            // style={styles.flatList}
+            data={props.list}
+            renderItem={({item}) => 
+                <View style = {{paddingVertical: 10, paddingHorizontal: 8}}>
+                <ListCard
+                image = {item.image}
+                desc = {item.desc}
+                price = {item.price}
+                />
+                </View>
+            }
+            numColumns = {2}
+            keyExtractor={(item, index) => index.toString()}
+        />
+    );
+}
+
+const MainPageText = (props) => {
+    return (
+        <View style = {{alignItems: 'center'}}>
+            <Slogo/>
+            <H1 text = {'Welcome to Shopertino!'}/>
+            <H2 style = {{marginBottom: 30, fontFamily: 'sans-serif-condensed',}} 
+                text = {'Shop & get updates on new products and sales with our mobile app.'}/>
+        </View>
+      );
+  };
+
+
+export {Divider, Header, HorizontalList, VerticalList, MainPageText};

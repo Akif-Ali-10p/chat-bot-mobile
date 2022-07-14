@@ -35,9 +35,28 @@ const MidText = (props) => {
 
 const HeaderText = (props) => {
     return(
-        <Text style={style.header_text}>{props.text}</Text>
+        <Text style={style.header_text}></Text>
     );
 }
+
+const H1 = (props) => {
+    return(
+        <Text style = {style.h1}>{props.text}</Text>
+    );
+}
+
+const H2 = (props) => {
+    return(
+        <Text style = {{...style.h2, ...props.style}}>{props.text}</Text>
+    );
+}
+
+const Slogo = (props) => {
+    return(
+        <Text style = {style.logo}>S</Text>
+    );
+}
+
 
 const BackIcon = (props) => {
     return(
@@ -55,8 +74,8 @@ const BackIcon = (props) => {
 const BigRoundButton = (props) => {
     return(
         <View style={{alignItems:'center', paddingVertical:20}}>
-            <TouchableHighlight style={style.big_round_button} onPress={props.onPressed} >
-                <Text style={style.big_round_button_text}>{props.text}</Text>
+            <TouchableHighlight style={{...style.big_round_button, ...props.style}} onPress={props.onPressed} >
+                <Text style={{...style.big_round_button_text, ...props.textStyle}}>{props.text}</Text>
             </TouchableHighlight>
         </View>
     );
@@ -131,5 +150,5 @@ export {InputField, HalfLine, MidText,
      HeaderText, BackIcon, BigRoundButton,
      BigRoundSocialButton, OnboardingLogo,
      OnboardingText, OnboardingTagline, NavigatorDots,
-     ListCard
+     ListCard, H1, H2, Slogo
     };
