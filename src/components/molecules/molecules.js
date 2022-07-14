@@ -1,6 +1,6 @@
-import React from 'react';  
-import {ImageBackground, TouchableHighlight, View} from 'react-native';  
-import { BackIcon, HalfLine, HeaderText, MidText, TabText } from '../atoms/atoms';
+import React from 'react'; 
+import {ImageBackground, TouchableHighlight, View, FlatList} from 'react-native';  
+import { BackIcon, HalfLine, HeaderText, MidText, ListCard, TabText } from '../atoms/atoms';
 import style from './molecule_styles';
 
 const Divider = () => {
@@ -32,4 +32,22 @@ const TabBar = (props) => {
     );
 }
 
-export {Divider, Header, TabBar};
+const HorizontalList = (props) => {
+    return(
+        <FlatList
+            // style={styles.flatList}
+            horizontal={true}
+            data={props.list}
+            renderItem={({item}) => 
+                <ListCard
+                image = {item.image}
+                desc = {item.desc}
+                price = {item.price}
+                />
+            }
+            keyExtractor={(item, index) => index.toString()}
+        />
+    );
+}
+
+export {Divider, Header, HorizontalList, TabBar};
