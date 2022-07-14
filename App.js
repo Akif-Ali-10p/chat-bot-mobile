@@ -14,6 +14,7 @@ import SignIn from './src/components/pages/signin.js';
 import Onboard from './src/components/pages/onboarding.js';
 import HomePage from './src/components/pages/homepage.js';
 import ShopPage from './src/components/pages/categoryPage.js';
+import TestPage from './src/components/pages/test.js';
 
 
 GoogleSignin.configure({
@@ -44,7 +45,8 @@ const AppUI = () =>{
         {/* <Signup /> */}
         {/* <Onboard /> */}
         {/* <HomePage /> */}
-        <ShopPage />
+        {/* <ShopPage /> */}
+        <TestPage />
       </View>
     );
   }

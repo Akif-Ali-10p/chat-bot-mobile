@@ -118,4 +118,22 @@ const TabText = (props) => {
     );
 }
 
-export {InputField, HalfLine, MidText, HeaderText, BackIcon, BigRoundButton, BigRoundSocialButton, OnboardingLogo, OnboardingText, OnboardingTagline, NavigatorDots, TabText};
+const SquareButton = (props) => {
+    return(
+        <View style={{alignItems:'center', paddingVertical:20}}>
+            <TouchableHighlight style={style.big_square_button} onPress={props.onPressed} >
+                <Text style={{...style.big_round_button_text, fontSize:15}}>{props.text}</Text>
+            </TouchableHighlight>
+        </View>
+    );
+}
+
+const TotalAmountText = (props) => {
+    return(
+        <View style={{alignItems:'flex-start', padding:10}}>
+            <Text style={style.total_amount_text}>{"Total: "+props.text}</Text>
+        </View>
+    );
+}
+
+export {InputField, HalfLine, MidText, HeaderText, BackIcon, BigRoundButton, BigRoundSocialButton, OnboardingLogo, OnboardingText, OnboardingTagline, NavigatorDots, TabText, SquareButton, TotalAmountText};

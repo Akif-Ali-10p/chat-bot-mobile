@@ -61,6 +61,24 @@ const style = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
         textAlign: 'center'
+    },
+    big_square_button:{
+        height: 50,
+        width: 120,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 5,
+        backgroundColor: '#333333',
+        borderWidth: 1,
+        borderColor: 'grey',
+        elevation: 5
+    },
+    total_amount_text:{
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#333333',
+        textAlign:'center',
+        padding: 20
     }
 });
 
