@@ -170,10 +170,20 @@ const OrderDate = (props) => {
     );
 }
 
+const OrderBannerText = (props) => {
+    return(
+        <View style={{...style.tab_text_container, ...props.text_container, justifyContent:'space-around'}}>
+            <View></View>
+            <Text style={style.tab_text}>{props.text}</Text>
+            <Text style={style.tab_text_date}>{props.date}</Text>
+        </View>
+    );
+}
+
 export {InputField, HalfLine, MidText,
      HeaderText, BackIcon, BigRoundButton,
      BigRoundSocialButton, OnboardingLogo,
      OnboardingText, OnboardingTagline, NavigatorDots,
      ListCard, TabText,
-     SquareButton, TotalAmountText, SmallPictureTile, OrderDate
+     SquareButton, TotalAmountText, SmallPictureTile, OrderDate, OrderBannerText
     };
