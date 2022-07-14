@@ -153,10 +153,27 @@ const TotalAmountText = (props) => {
     );
 }
 
+const SmallPictureTile = (props) => {
+    return(
+        <Image 
+            source={{uri: props.image}}
+            style={style.small_pic_tile}
+        />
+    );
+}
+
+const OrderDate = (props) => {
+    return(
+        <View style={{alignItems:'flex-end', padding:10}}>
+            <Text style={{}}>{props.text}</Text>
+        </View>
+    );
+}
+
 export {InputField, HalfLine, MidText,
      HeaderText, BackIcon, BigRoundButton,
      BigRoundSocialButton, OnboardingLogo,
      OnboardingText, OnboardingTagline, NavigatorDots,
      ListCard, TabText,
-     SquareButton, TotalAmountText
+     SquareButton, TotalAmountText, SmallPictureTile, OrderDate
     };

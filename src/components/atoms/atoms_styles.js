@@ -73,12 +73,21 @@ const style = StyleSheet.create({
         borderColor: 'grey',
         elevation: 5
     },
-    total_amount_text:{
+    total_amount_text: {
         fontSize: 20,
         fontWeight: 'bold',
         color: '#333333',
         textAlign:'center',
         padding: 20
+    },
+    small_pic_tile: {
+        width: 80, 
+        height: 120, 
+        resizeMode: 'cover',
+        margin: 10,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#dddddd'
     }
 });
 
