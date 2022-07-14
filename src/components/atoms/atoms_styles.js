@@ -62,6 +62,13 @@ const style = StyleSheet.create({
         color: 'white',
         textAlign: 'center'
     },
+    tab_text_date:{
+        fontSize: 15,
+        fontWeight: 'bold',
+        color: '#cccccc',
+        textAlign: 'right',
+        paddingRight: 40
+    },
     big_square_button:{
         height: 50,
         width: 120,
