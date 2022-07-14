@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableHighlight } from 'react-native';
+import { View, Text, TextInput, TouchableHighlight, Image } from 'react-native';
 import style from './atoms_styles';
 // import material ui icons
 import { Icon } from "@rneui/themed";
@@ -43,8 +43,8 @@ const BackIcon = (props) => {
     return(
         <View style={{alignItems:'flex-start', margin:10}}>
         <Icon 
-            name='arrow-back-ios' 
-            type='material'
+            name='ios-american-football' 
+            type='ionicon'
             onPress={props.onPressed}
             size={30} color='black' 
             style={{padding:10, backgroundColor:'grey'}}/>
@@ -128,6 +128,23 @@ const SquareButton = (props) => {
     );
 }
 
+const ListCard = (props) => {
+    return(
+        //props.item: image, desc, price
+        <View style={{ height: 250, width: 150, marginLeft: 20, borderWidth: 1, borderColor: '#dddddd' }}>
+            <View style={{ flex: 2 }}>
+                <Image source={{uri: props.image}}
+                        style={{ flex: 1, width: null, height: null, resizeMode: 'cover' }}
+                />
+            </View>
+            <View style={{ flex: 0.5, paddingLeft: 10, paddingVertical: 5,}}>
+                <Text style={{fontWeight: '700', fontSize: 18}} >{props.price}</Text>
+                <Text style={{fontWeight: '500', fontSize: 15}} >{props.desc}</Text>
+            </View>
+        </View>
+    );
+}
+
 const TotalAmountText = (props) => {
     return(
         <View style={{alignItems:'flex-start', padding:10}}>
@@ -136,4 +153,10 @@ const TotalAmountText = (props) => {
     );
 }
 
-export {InputField, HalfLine, MidText, HeaderText, BackIcon, BigRoundButton, BigRoundSocialButton, OnboardingLogo, OnboardingText, OnboardingTagline, NavigatorDots, TabText, SquareButton, TotalAmountText};
+export {InputField, HalfLine, MidText,
+     HeaderText, BackIcon, BigRoundButton,
+     BigRoundSocialButton, OnboardingLogo,
+     OnboardingText, OnboardingTagline, NavigatorDots,
+     ListCard, TabText,
+     SquareButton, TotalAmountText
+    };
