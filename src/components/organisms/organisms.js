@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, SafeAreaView, FlatList, View, ScrollView } from 'react-native';
-import { SquareButton, TotalAmountText } from '../atoms/atoms';
-import { VerticalTabBar, HorizontalTabBar, OrderProductRow, OrderBackground } from '../molecules/molecules';
+import { VerticalTabBar, HorizontalTabBar, OrderProductRow, OrderBackground, OrderFooter } from '../molecules/molecules';
 
 const CategoryTabs = (props) => {
     // props: tabs
@@ -34,20 +33,17 @@ const CategoryBars = (props) => {
 const OrderModule = (props) => {
     // props: order_list, order_stats
     return(
-        <View style={{elevation:10}}>
-            <View style={{borderRadius:10}}>
+        // <View style={{elevation:10}}>
+            <View style={{borderRadius:10, elevation:10}}>
                 <OrderBackground order={props.order_list} status={props.order_stats}/>
                 {props.order_list.map((order, index) => {
                     return(
                         <OrderProductRow key={index} order={order} />
                     );
                 })}
-                <View style={{flexDirection:'row', justifyContent:'space-around'}}>
-                    <TotalAmountText text='$0.00'/>
-                    <SquareButton text={'REORDER'} />
-                </View>
+                <OrderFooter order_stats={props.order_stats} onPressed={()=>{console.log('press')}}/>
             </View>
-        </View>
+        // </View>
     );
 }
 

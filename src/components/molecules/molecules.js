@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; 
 import {ImageBackground, TouchableHighlight, View, FlatList, Text, Image} from 'react-native';  
-import { BackIcon, HalfLine, HeaderText, MidText, ListCard, H1, H2, Slogo, TabText, SmallPictureTile, ProductImageTile } from '../atoms/atoms';
+import { BackIcon, HalfLine, HeaderText, MidText, ListCard, H1, H2, Slogo, TabText, SmallPictureTile, OrderBannerText, TotalAmountText, SquareButton, TotalFooter, ProductImageTile } from '../atoms/atoms';
 import style from './molecule_styles';
 
 
@@ -92,6 +92,16 @@ const MainPageText = (props) => {
       );
   };
 
+const OrderFooter = (props) => {
+    // props: order_stats, onPressed
+    return(
+        <View style={{flexDirection:'row', justifyContent:'space-around'}}>
+            <TotalAmountText text={props.order_stats.total}/>
+            <SquareButton text={'REORDER'} onPressed={props.onPressed} />
+        </View>
+    );
+}
+
 const OrderProductRow = (props) => {
     return(
         <View style={{flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10}}>
@@ -106,13 +116,20 @@ const OrderBackground = (props) => {
     return(
         <View style={{...style.bar, borderRadius:10}}>
             <ImageBackground source={{uri:props.order[0].image}} resizeMode='contain' imageStyle={{width:'100%'}}>
-                    <TabText text={props.status?.text ?? 'Order Placed'} text_container={{width:400}}/>
+                <OrderBannerText text={props.status?.text ?? 'Order Placed'} date={"Ordered on " + props.status?.date} text_container={{width:400}}/>
             </ImageBackground>
         </View>
     );
 }
 
+const ShoppingFooter = (props) => {
+    // props: total, onPressed
+    return(
+        <View>
+            <TotalFooter total={props.total}/>
+            <SquareButton text={'CONTINUE'} style={{width:'90%'}} onPressed={props.onPressed}/>
+        </View>
+    );
+}
 
-
-export {Divider, Header, HorizontalList, HorizontalTabBar,  VerticalList, MainPageText, VerticalTabBar, OrderProductRow, OrderBackground};
-
+export {Divider, Header, HorizontalList, HorizontalTabBar, VerticalList, MainPageText, VerticalTabBar, OrderProductRow, OrderBackground, OrderFooter, ShoppingFooter};
