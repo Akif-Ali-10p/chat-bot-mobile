@@ -1,6 +1,6 @@
 import React from 'react'; 
 import {ImageBackground, TouchableHighlight, View, FlatList, Text} from 'react-native';  
-import { BackIcon, HalfLine, HeaderText, MidText, ListCard, TabText, SmallPictureTile, OrderBannerText, TotalAmountText, SquareButton } from '../atoms/atoms';
+import { BackIcon, HalfLine, HeaderText, MidText, ListCard, TabText, SmallPictureTile, OrderBannerText, TotalAmountText, SquareButton, TotalFooter } from '../atoms/atoms';
 import style from './molecule_styles';
 
 const Divider = () => {
@@ -90,4 +90,14 @@ const OrderBackground = (props) => {
     );
 }
 
-export {Divider, Header, HorizontalList, HorizontalTabBar, VerticalTabBar, OrderProductRow, OrderBackground, OrderFooter};
+const ShoppingFooter = (props) => {
+    // props: total, onPressed
+    return(
+        <View>
+            <TotalFooter total={props.total}/>
+            <SquareButton text={'CONTINUE'} style={{width:'90%'}} onPressed={props.onPressed}/>
+        </View>
+    );
+}
+
+export {Divider, Header, HorizontalList, HorizontalTabBar, VerticalTabBar, OrderProductRow, OrderBackground, OrderFooter, ShoppingFooter};

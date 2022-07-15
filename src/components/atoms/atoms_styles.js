@@ -95,6 +95,12 @@ const style = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 1,
         borderColor: '#dddddd'
+    },
+    shopping_footer_text:{
+        fontSize: 20,
+        fontWeight: '800',
+        fontFamily: 'sans-serif-condensed',
+        color: '#444444'
     }
 });
 
