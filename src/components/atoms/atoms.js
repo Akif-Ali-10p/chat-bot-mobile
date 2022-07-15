@@ -77,6 +77,7 @@ const BigRoundSocialButton = (props) => {
 }
 
 const OnboardingLogo = (props) => {
+    // props: logo, logoType
     return(
         <View style={{alignItems:'center', padding:10, borderColor:'white', borderWidth:2}}>
             <Icon name={props.logo} type={props.logoType} size={50} color='white'/>
@@ -119,10 +120,11 @@ const TabText = (props) => {
 }
 
 const SquareButton = (props) => {
+    // props: text, style, onPressed, icon, style, textStyle
     return(
         <View style={{alignItems:'center', paddingVertical:20}}>
-            <TouchableHighlight style={style.big_square_button} onPress={props.onPressed} >
-                <Text style={{...style.big_round_button_text, fontSize:15}}>{props.text}</Text>
+            <TouchableHighlight style={{...style.big_square_button, ...props.style}} onPress={props.onPressed} >
+                <Text style={{...style.big_round_button_text, fontSize:15, ...props.textStyle}}>{props.text}</Text>
             </TouchableHighlight>
         </View>
     );
@@ -180,10 +182,21 @@ const OrderBannerText = (props) => {
     );
 }
 
+const TotalFooter = (props) => {
+    // props: total
+    return(
+        <View style={{flexDirection:'row', paddingHorizontal:30, paddingVertical:5, justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{...style.shopping_footer_text, fontSize:18, color:'#777777'}}>{'Total'}</Text>
+            <Text style={style.shopping_footer_text}>{"$"+props.total}</Text>
+        </View>
+    );
+}
+
 export {InputField, HalfLine, MidText,
      HeaderText, BackIcon, BigRoundButton,
      BigRoundSocialButton, OnboardingLogo,
      OnboardingText, OnboardingTagline, NavigatorDots,
      ListCard, TabText,
-     SquareButton, TotalAmountText, SmallPictureTile, OrderDate, OrderBannerText
+     SquareButton, TotalAmountText, SmallPictureTile, OrderDate, OrderBannerText,
+     TotalFooter
     };
