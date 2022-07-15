@@ -181,6 +181,16 @@ const SmallPictureTile = (props) => {
     );
 }
 
+const ProductImageTile = (props)=> {
+    return(
+        <View style={{ height: 280, width: 130,}}>
+            <Image source={{uri: 'https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}}
+                        style={{ flex: 1, height: null, width: null, borderRadius: 10, resizeMode: 'cover' }}
+            />
+        </View>
+    );
+}
+
 const OrderDate = (props) => {
     return(
         <View style={{alignItems:'flex-end', padding:10}}>
@@ -194,5 +204,6 @@ export {InputField, HalfLine, MidText,
      BigRoundSocialButton, OnboardingLogo,
      OnboardingText, OnboardingTagline, NavigatorDots,
      ListCard, H1, H2, Slogo, TabText,
-     SquareButton, TotalAmountText, SmallPictureTile, OrderDate
+     SquareButton, TotalAmountText, SmallPictureTile, OrderDate,
+     ProductImageTile
     };

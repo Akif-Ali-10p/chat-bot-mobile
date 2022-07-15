@@ -1,7 +1,8 @@
-import React from 'react'; 
-import {ImageBackground, TouchableHighlight, View, FlatList, Text} from 'react-native';  
-import { BackIcon, HalfLine, HeaderText, MidText, ListCard, H1, H2, Slogo, TabText, SmallPictureTile } from '../atoms/atoms';
+import React, { useState } from 'react'; 
+import {ImageBackground, TouchableHighlight, View, FlatList, Text, Image} from 'react-native';  
+import { BackIcon, HalfLine, HeaderText, MidText, ListCard, H1, H2, Slogo, TabText, SmallPictureTile, ProductImageTile } from '../atoms/atoms';
 import style from './molecule_styles';
+
 
 const Divider = () => {
     return(
@@ -60,7 +61,6 @@ const HorizontalList = (props) => {
     );
 }
 
-<<<<<<< HEAD
 const VerticalList = (props) => {
     return(
         <FlatList
@@ -92,9 +92,6 @@ const MainPageText = (props) => {
       );
   };
 
-
-export {Divider, Header, HorizontalList, VerticalList, MainPageText};
-=======
 const OrderProductRow = (props) => {
     return(
         <View style={{flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10}}>
@@ -115,5 +112,7 @@ const OrderBackground = (props) => {
     );
 }
 
-export {Divider, Header, HorizontalList, HorizontalTabBar, VerticalTabBar, OrderProductRow, OrderBackground};
->>>>>>> Front-End
+
+
+export {Divider, Header, HorizontalList, HorizontalTabBar,  VerticalList, MainPageText, VerticalTabBar, OrderProductRow, OrderBackground};
+
