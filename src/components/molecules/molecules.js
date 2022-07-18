@@ -1,7 +1,8 @@
 import React, { useState } from 'react'; 
-import {ImageBackground, TouchableHighlight, View, FlatList, Text, Image} from 'react-native';  
-import { BackIcon, HalfLine, HeaderText, MidText, ListCard, H1, H2, Slogo, TabText, SmallPictureTile, OrderBannerText, TotalAmountText, SquareButton, TotalFooter, ProductImageTile } from '../atoms/atoms';
+import {ImageBackground, TouchableHighlight, View, FlatList, Text} from 'react-native';  
+import { BackIcon, HalfLine, HeaderText, MidText, ListCard, H1, H2, Slogo, TabText, SmallPictureTile, OrderBannerText, TotalAmountText, SquareButton, TotalFooter, ProductImageTile, CheckBox } from '../atoms/atoms';
 import style from './molecule_styles';
+
 
 
 const Divider = () => {
@@ -132,4 +133,32 @@ const ShoppingFooter = (props) => {
     );
 }
 
-export {Divider, Header, HorizontalList, HorizontalTabBar, VerticalList, MainPageText, VerticalTabBar, OrderProductRow, OrderBackground, OrderFooter, ShoppingFooter};
+const ProductCard = (props) => {
+    return(
+        <View style = {{flexDirection: 'row',  margin: 8}}>
+            <ProductImageTile/>
+            <View style = {{padding: 15, justifyContent: 'space-between'}}>
+                <Text style = {{marginTop: 12, fontSize: 18, fontWeight: '700', color: 'black'}}>
+                    Nike Sneakers</Text>
+                    
+                    <View style = {{flexDirection: 'row', alignItems: 'center'}}>
+                        <Text style = {{fontSize: 17, marginRight: 10, fontWeight: '700', fontFamily: 'sans-serif-condensed',}}>Colors</Text>
+                        
+                        <CheckBox color = 'white' />
+                        <CheckBox color = 'pink' />
+                        <CheckBox color = 'black' />
+
+                        
+                    </View>
+                    
+                    
+
+
+                <Text style = {{fontSize: 20, fontWeight: '900', color: 'black'}}>
+                    $79</Text>
+            </View>
+        </View>
+    );
+}
+
+export {Divider, Header, HorizontalList, HorizontalTabBar, VerticalList, MainPageText, VerticalTabBar, OrderProductRow, OrderBackground, OrderFooter, ShoppingFooter, ProductCard};

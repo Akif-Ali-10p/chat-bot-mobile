@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableHighlight, Image } from 'react-native';
 import style from './atoms_styles';
 // import material ui icons
@@ -221,12 +221,44 @@ const TotalFooter = (props) => {
     );
 }
 
+const CheckBox = (props) => {
+    const [isSelected, setSelection] = useState(false);
+   
+    return(
+        <View style = {{marginLeft: 10, height: 25, width: 25, borderColor:'grey', borderWidth: 1.5, borderRadius:5, justifyContent: 'center', alignItems: 'center', backgroundColor: props.color}}>
+            <Icon 
+                name='check'
+                type='font-awesome'
+                color= {isSelected ? props.color == 'black' ? '#fff':'#000': props.color}
+                size= {15}
+                onPress={() => setSelection(!isSelected)}
+            />
+        </View>
+    );
+}
+
+const CheckBox = (props) => {
+    const [isSelected, setSelection] = useState(false);
+   
+    return(
+        <View style = {{marginLeft: 10, height: 25, width: 25, borderColor:'grey', borderWidth: 1.5, borderRadius:5, justifyContent: 'center', alignItems: 'center', backgroundColor: props.color}}>
+            <Icon 
+                name='check'
+                type='font-awesome'
+                color= {isSelected ? props.color == 'black' ? '#fff':'#000': props.color}
+                size= {15}
+                onPress={() => setSelection(!isSelected)}
+            />
+        </View>
+    );
+}
+
 export {InputField, HalfLine, MidText,
      HeaderText, BackIcon, BigRoundButton,
      BigRoundSocialButton, OnboardingLogo,
      OnboardingText, OnboardingTagline, NavigatorDots,
      ListCard, H1, H2, Slogo, TabText,
-     ProductImageTile,
+     ProductImageTile, CheckBox,
      SquareButton, TotalAmountText, SmallPictureTile, OrderDate, OrderBannerText,
      TotalFooter
     };
