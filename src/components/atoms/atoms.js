@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableHighlight, Image } from 'react-native';
 import style from './atoms_styles';
 // import material ui icons
@@ -35,9 +35,28 @@ const MidText = (props) => {
 
 const HeaderText = (props) => {
     return(
-        <Text style={style.header_text}>{props.text}</Text>
+        <Text style={style.header_text}></Text>
     );
 }
+
+const H1 = (props) => {
+    return(
+        <Text style = {style.h1}>{props.text}</Text>
+    );
+}
+
+const H2 = (props) => {
+    return(
+        <Text style = {{...style.h2, ...props.style}}>{props.text}</Text>
+    );
+}
+
+const Slogo = (props) => {
+    return(
+        <Text style = {style.logo}>S</Text>
+    );
+}
+
 
 const BackIcon = (props) => {
     return(
@@ -55,8 +74,8 @@ const BackIcon = (props) => {
 const BigRoundButton = (props) => {
     return(
         <View style={{alignItems:'center', paddingVertical:20}}>
-            <TouchableHighlight style={style.big_round_button} onPress={props.onPressed} >
-                <Text style={style.big_round_button_text}>{props.text}</Text>
+            <TouchableHighlight style={{...style.big_round_button, ...props.style}} onPress={props.onPressed} >
+                <Text style={{...style.big_round_button_text, ...props.textStyle}}>{props.text}</Text>
             </TouchableHighlight>
         </View>
     );
@@ -164,6 +183,16 @@ const SmallPictureTile = (props) => {
     );
 }
 
+const ProductImageTile = (props)=> {
+    return(
+        <View style={{ height: 280, width: 130,}}>
+            <Image source={{uri: 'https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}}
+                        style={{ flex: 1, height: null, width: null, borderRadius: 10, resizeMode: 'cover' }}
+            />
+        </View>
+    );
+}
+
 const OrderDate = (props) => {
     return(
         <View style={{alignItems:'flex-end', padding:10}}>
@@ -192,11 +221,44 @@ const TotalFooter = (props) => {
     );
 }
 
+const CheckBox = (props) => {
+    const [isSelected, setSelection] = useState(false);
+   
+    return(
+        <View style = {{marginLeft: 10, height: 25, width: 25, borderColor:'grey', borderWidth: 1.5, borderRadius:5, justifyContent: 'center', alignItems: 'center', backgroundColor: props.color}}>
+            <Icon 
+                name='check'
+                type='font-awesome'
+                color= {isSelected ? props.color == 'black' ? '#fff':'#000': props.color}
+                size= {15}
+                onPress={() => setSelection(!isSelected)}
+            />
+        </View>
+    );
+}
+
+const CheckBox = (props) => {
+    const [isSelected, setSelection] = useState(false);
+   
+    return(
+        <View style = {{marginLeft: 10, height: 25, width: 25, borderColor:'grey', borderWidth: 1.5, borderRadius:5, justifyContent: 'center', alignItems: 'center', backgroundColor: props.color}}>
+            <Icon 
+                name='check'
+                type='font-awesome'
+                color= {isSelected ? props.color == 'black' ? '#fff':'#000': props.color}
+                size= {15}
+                onPress={() => setSelection(!isSelected)}
+            />
+        </View>
+    );
+}
+
 export {InputField, HalfLine, MidText,
      HeaderText, BackIcon, BigRoundButton,
      BigRoundSocialButton, OnboardingLogo,
      OnboardingText, OnboardingTagline, NavigatorDots,
-     ListCard, TabText,
+     ListCard, H1, H2, Slogo, TabText,
+     ProductImageTile, CheckBox,
      SquareButton, TotalAmountText, SmallPictureTile, OrderDate, OrderBannerText,
      TotalFooter
     };

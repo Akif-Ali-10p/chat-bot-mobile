@@ -1,7 +1,9 @@
-import React from 'react'; 
+import React, { useState } from 'react'; 
 import {ImageBackground, TouchableHighlight, View, FlatList, Text} from 'react-native';  
-import { BackIcon, HalfLine, HeaderText, MidText, ListCard, TabText, SmallPictureTile, OrderBannerText, TotalAmountText, SquareButton, TotalFooter } from '../atoms/atoms';
+import { BackIcon, HalfLine, HeaderText, MidText, ListCard, H1, H2, Slogo, TabText, SmallPictureTile, OrderBannerText, TotalAmountText, SquareButton, TotalFooter, ProductImageTile, CheckBox } from '../atoms/atoms';
 import style from './molecule_styles';
+
+
 
 const Divider = () => {
     return(
@@ -60,6 +62,37 @@ const HorizontalList = (props) => {
     );
 }
 
+const VerticalList = (props) => {
+    return(
+        <FlatList
+            // style={styles.flatList}
+            data={props.list}
+            renderItem={({item}) => 
+                <View style = {{paddingVertical: 10, paddingHorizontal: 8}}>
+                <ListCard
+                image = {item.image}
+                desc = {item.desc}
+                price = {item.price}
+                />
+                </View>
+            }
+            numColumns = {2}
+            keyExtractor={(item, index) => index.toString()}
+        />
+    );
+}
+
+const MainPageText = (props) => {
+    return (
+        <View style = {{alignItems: 'center'}}>
+            <Slogo/>
+            <H1 text = {'Welcome to Shopertino!'}/>
+            <H2 style = {{marginBottom: 30, fontFamily: 'sans-serif-condensed',}} 
+                text = {'Shop & get updates on new products and sales with our mobile app.'}/>
+        </View>
+      );
+  };
+
 const OrderFooter = (props) => {
     // props: order_stats, onPressed
     return(
@@ -100,4 +133,32 @@ const ShoppingFooter = (props) => {
     );
 }
 
-export {Divider, Header, HorizontalList, HorizontalTabBar, VerticalTabBar, OrderProductRow, OrderBackground, OrderFooter, ShoppingFooter};
+const ProductCard = (props) => {
+    return(
+        <View style = {{flexDirection: 'row',  margin: 8}}>
+            <ProductImageTile/>
+            <View style = {{padding: 15, justifyContent: 'space-between'}}>
+                <Text style = {{marginTop: 12, fontSize: 18, fontWeight: '700', color: 'black'}}>
+                    Nike Sneakers</Text>
+                    
+                    <View style = {{flexDirection: 'row', alignItems: 'center'}}>
+                        <Text style = {{fontSize: 17, marginRight: 10, fontWeight: '700', fontFamily: 'sans-serif-condensed',}}>Colors</Text>
+                        
+                        <CheckBox color = 'white' />
+                        <CheckBox color = 'pink' />
+                        <CheckBox color = 'black' />
+
+                        
+                    </View>
+                    
+                    
+
+
+                <Text style = {{fontSize: 20, fontWeight: '900', color: 'black'}}>
+                    $79</Text>
+            </View>
+        </View>
+    );
+}
+
+export {Divider, Header, HorizontalList, HorizontalTabBar, VerticalList, MainPageText, VerticalTabBar, OrderProductRow, OrderBackground, OrderFooter, ShoppingFooter, ProductCard};

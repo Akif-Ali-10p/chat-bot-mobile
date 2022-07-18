@@ -47,4 +47,24 @@ const OrderModule = (props) => {
     );
 }
 
+const ProductModule = (props) => {
+    // props: order_list, order_stats
+    return(
+        <View style={{elevation:10}}>
+            <View style={{borderRadius:10}}>
+                {/* <OrderBackground order={props.order_list} status={props.order_stats}/>
+                {props.order_list.map((order, index) => {
+                    return(
+                        <OrderProductRow key={index} order={order} />
+                    );
+                })}
+                <View style={{flexDirection:'row', justifyContent:'space-around'}}>
+                    <TotalAmountText text='$0.00'/>
+                    <SquareButton text={'REORDER'} />
+                </View> */}
+            </View>
+        </View>
+    );
+}
+
 export {CategoryTabs, CategoryBars, OrderModule};
